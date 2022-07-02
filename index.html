@@ -8,16 +8,31 @@
     <title>Document</title>
 </head>
 <body>
+<div class="fluid-container">
     <header class="d-flex justify-content-center w-100 bg-primary">
         <h1>Weather Dashboard</h1>
     </header>
     
+
+
+
     <div class="card">
         <div class="card-body">
           <h5 class="card-title">Search for your city to get the Weather</h5>
           <input type="text" id="search-bar">
+          <input type="submit" id="search-button">
         </div>
       </div>
+
+      <div id="today-container" class="container">
+        <div class="d-flex"><h1 id="today-title"></h1><img id="icon"></div>
+        <p id="today-temp"></p>
+        <p id="today-wind"></p>
+        <p id="today-humidity"></p>
+        <p id="UV-Index"></p>
+    </div>
+
+</div>
 
     <script src="index.js"></script>
 </body>
