@@ -6,8 +6,14 @@ fetch(url, {cache: "reload"})
     return response.json();
   })
   .then(function (data) {
+    $(`#forecast${0}`).remove()
+    $(`#forecast${1}`).remove()
+    $(`#forecast${2}`).remove()
+    $(`#forecast${3}`).remove()
+    $(`#forecast${4}`).remove()
     for(var i =1; i < data.list.length; i++) {
     console.log(data.list[i])
+    
     $('<div>', {
         id: `forecast${[i]}`,
         style: ' border: 2px solid black; margin: 10px; flex-direction: row;',
@@ -16,6 +22,7 @@ fetch(url, {cache: "reload"})
     }).appendTo('#5dayforecast');
     today = moment().add(i, 'days')
     $('<h4>').text(today.format("MM/D/YYYY")).appendTo(`#forecast${[i]}`)
+    
 
     $('<p>', {
         id: `temp${data.list[i]}`
