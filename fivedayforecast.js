@@ -19,7 +19,7 @@ fetch(url, {cache: "reload"})
         style: ' border: 2px solid black; margin: 10px; flex-direction: row;',
         class: 'container'
 
-    }).appendTo('#5dayforecast');
+    }).addClass('bg-primary').appendTo('#5dayforecast');
     today = moment().add(i, 'days')
     $('<h4>').text(today.format("MM/D/YYYY")).appendTo(`#forecast${[i]}`)
     
