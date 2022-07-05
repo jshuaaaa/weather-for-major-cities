@@ -24,9 +24,11 @@ function editSearch(e) {
 function getApi() {
   fetch(url, {cache: "reload"})
   .then(function (response) {
+    console.log(response)
     return response.json();
   })
   .then(function (data) {
+    console.log(data)
    
     var iconcode = data.weather[0].icon;
    

@@ -13,6 +13,9 @@ fetch(url, {cache: "reload"})
     $(`#forecast${4}`).remove()
     for(var i =1; i < data.list.length; i++) {
     console.log(data.list[i])
+
+    var iconcode = data.list[i].weather[0].icon
+    console.log(iconcode)
     
     $('<div>', {
         id: `forecast${[i]}`,
@@ -23,6 +26,9 @@ fetch(url, {cache: "reload"})
     today = moment().add(i, 'days')
     $('<h4>').text(today.format("MM/D/YYYY")).appendTo(`#forecast${[i]}`)
     
+    $('<img>', {
+      src: `https://openweathermap.org/img/w/${iconcode}.png`
+    }).appendTo(`#forecast${[i]}`)
 
     $('<p>', {
         id: `temp${data.list[i]}`
