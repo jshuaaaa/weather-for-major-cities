@@ -1,11 +1,20 @@
+
+
 function getFiveDayApi() {
-   url = `https://api.openweathermap.org/data/2.5/forecast?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
-console.log(url)
+  console.log(searchBar.value)
+   if(searchBar.value != null) {
+    url = `https://api.openweathermap.org/data/2.5/forecast?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
+   } else
+   url = `https://api.openweathermap.org/data/2.5/forecast?q=${localStorage.searches}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
+   var futureDays = today
+
 fetch(url, {cache: "reload"})
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
+
+  
     $(`#forecast${0}`).remove()
     $(`#forecast${1}`).remove()
     $(`#forecast${2}`).remove()
@@ -23,7 +32,7 @@ fetch(url, {cache: "reload"})
         class: 'container'
 
     }).addClass('bg-primary').appendTo('#5dayforecast');
-    today = moment().add(i, 'days')
+    futureDays = moment().add(i, 'days')
     $('<h4>').text(today.format("MM/D/YYYY")).appendTo(`#forecast${[i]}`)
     
     $('<img>', {
@@ -46,3 +55,4 @@ fetch(url, {cache: "reload"})
     
   })
 }
+
