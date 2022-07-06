@@ -5,10 +5,11 @@ var todayTemp = document.getElementById('today-temp')
 var todayWind = document.getElementById('today-wind')
 var todayHumidity = document.getElementById('today-humidity')
 var UVIndex = document.getElementById('UV-Index')
-var url = `https://api.openweathermap.org/data/2.5/weather?q=${localStorage.previousSearch}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial`
+var url = `https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial`
 var todayContainer = document.getElementById('today-container')
 var icon = document.getElementById('icon')
 var today = moment()
+var fiveDayStatus = false
 
 
 let searchHistory = localStorage.getItem("searchHistory")
@@ -16,11 +17,30 @@ searchHistory = JSON.parse(searchHistory)
 
 if(searchHistory) {
   for(var i=0; i<searchHistory.length; i++) {
+    console.log('g')
     $('<button>',{
-      id: [i]
+      class: 'storage',
+      id: searchHistory[i],
+      onclick: 'urlDefiner(this.id)',
      }).appendTo('#search-history').text(searchHistory[i])
+     var selector = document.querySelectorAll('.storage')
+
   }
 }
+
+function urlDefiner(id) {
+
+  url =`https://api.openweathermap.org/data/2.5/weather?q=${id}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial`
+  url5 = `https://api.openweathermap.org/data/2.5/forecast?q=${id}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5` 
+getApi()
+getFiveDayApi()
+
+
+
+
+}
+
+
 
 
 
@@ -34,11 +54,13 @@ function editSearch(e) {
     todayContainer.setAttribute("style", "border: 2px solid black;")
 
     url = `https://api.openweathermap.org/data/2.5/weather?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial`
+    url5 = `https://api.openweathermap.org/data/2.5/forecast?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
       getApi()
       getFiveDayApi()
 });
 
 function getApi() {
+  
   fetch(url, {cache: "reload"})
   .then(function (response) {
     console.log(response)
@@ -82,7 +104,8 @@ function getApi() {
 
 function storeData(name, searchHistory) {
   $('<button>',{
-    id: name
+    id: name,
+    onclick: 'urlDefiner(this.id)',
    }).appendTo('#search-history').text(searchHistory)
 }
 

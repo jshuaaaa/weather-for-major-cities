@@ -1,18 +1,18 @@
 
 
-function getFiveDayApi() {
-  console.log(searchBar.value)
-   if(searchBar.value != null) {
-    url = `https://api.openweathermap.org/data/2.5/forecast?q=${searchBar.value}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
-   } else
-   url = `https://api.openweathermap.org/data/2.5/forecast?q=${localStorage.searches}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial&cnt=5`
+function getFiveDayApi(id) {
+  
+    
+  
+  
    var futureDays = today
 
-fetch(url, {cache: "reload"})
+fetch(url5, {cache: "reload"})
   .then(function (response) {
     return response.json();
   })
   .then(function (data) {
+    console.log(data)
 
   
     $(`#forecast${0}`).remove()
