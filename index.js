@@ -74,7 +74,12 @@ function getApi() {
     searchHistory = JSON.parse(searchHistory)
     searchHistory.push(name)
     localStorage.setItem("searchHistory", JSON.stringify(searchHistory))
-   storeData(searchHistory, name)
+   
+
+    $('<button>',{
+      id: name,
+      onclick: 'urlDefiner(this.id)',
+     }).appendTo('#search-history').text(name)
   
    
    
@@ -102,12 +107,8 @@ function getApi() {
     }
 )}
 
-function storeData(name, searchHistory) {
-  $('<button>',{
-    id: name,
-    onclick: 'urlDefiner(this.id)',
-   }).appendTo('#search-history').text(searchHistory)
-}
+  
+
 
 
 
