@@ -1,5 +1,5 @@
 
-
+// function to get five day weather data
 function getFiveDayApi(id) {
   
     

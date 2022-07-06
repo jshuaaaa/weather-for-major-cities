@@ -11,7 +11,11 @@ var icon = document.getElementById('icon')
 var today = moment()
 var fiveDayStatus = false
 
+// Defines all variables
 
+
+
+// Gets all storage data and prints it as a button on the homepage
 let searchHistory = localStorage.getItem("searchHistory")
 searchHistory = JSON.parse(searchHistory)
 
@@ -28,6 +32,7 @@ if(searchHistory) {
   }
 }
 
+//function called by storage buttons to fetch the url
 function urlDefiner(id) {
 
   url =`https://api.openweathermap.org/data/2.5/weather?q=${id}&APPID=07fbd3ab5870b3d955e106314afd4001&units=imperial`
@@ -47,7 +52,7 @@ getFiveDayApi()
 
 
 
-
+// search event listener calling the api to fetch based on what u entered
 searchButton.addEventListener("click", 
 function editSearch(e) {
     e.preventDefault()
